@@ -68,7 +68,7 @@ steps:
 - task: Docker@2
   displayName: Build and push image
   inputs:
-    containerRegistry: dockerRegistryServiceConnectionName #replace with name of your Docker registry service connection
+    containerRegistry: 'beekeepertest.azurecr.io' #replace with name of your Docker registry service connection
     repository: $(imageName)
     command: buildAndPush
     Dockerfile: Dockerfile
