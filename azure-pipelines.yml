@@ -11,8 +11,6 @@ pool:
   demands:
     - npm
 
-container: mcr.microsoft.com/dotnet/core/sdk:3.1
-
 variables:
   buildConfiguration: 'Release'
   wwwrootDir: 'Tailspin.SpaceGame.Web/wwwroot'
@@ -70,7 +68,7 @@ steps:
 - task: Docker@2
   displayName: Build and push image
   inputs:
-    #containerRegistry: 'beekeepertest.azurecr.io' #replace with name of your Docker registry service connection
+    command: buildAndPush
+    containerRegistry: 'beekeepertest.azurecr.io' #replace with name of your Docker registry service connection
     repository: $(imageName)
-    command: build
-    Dockerfile: Tailspin.SpaceGame.Web/Dockerfile
+    dockerfile: Tailspin.SpaceGame.Web/Dockerfile
