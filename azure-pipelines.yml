@@ -71,4 +71,4 @@ steps:
     #containerRegistry: 'beekeepertest.azurecr.io' #replace with name of your Docker registry service connection
     repository: $(imageName)
     command: build
-    Dockerfile: Dockerfile
+    Dockerfile: Tailspin.SpaceGame.Web/Dockerfile
