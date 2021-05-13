@@ -69,6 +69,6 @@ steps:
   displayName: Build and push image
   inputs:
     command: buildAndPush
-    containerRegistry: 'beekeepertest.azurecr.io' #replace with name of your Docker registry service connection
+    containerRegistry: 'beekeepertest.azurecr.io/sampleapp:dev' #replace with name of your Docker registry service connection
     repository: $(imageName)
     dockerfile: Tailspin.SpaceGame.Web/Dockerfile
