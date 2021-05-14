@@ -1,4 +1,4 @@
-name: dotnet package 
+name: Build tailspin-spacegame-web 
 
 on: [push]
 
@@ -17,7 +17,7 @@ jobs:
     
     strategy: 
       matrix:
-        dotnet-version: ['3.1.x']
+        dotnet-version: ['3.1']
 
     steps:
     - uses: actions/checkout@v2
@@ -25,7 +25,7 @@ jobs:
     - name: Set .NET Core SDK ${{ matrix.dotnet-version }}
       uses: actions/setup-dotnet@v1.7.2
       with:
-        dotnet-version:${{matrix.dotnet-version }}
+        dotnet-version: ${{matrix.dotnet-version }}
     - name: Install dependencies
       run: dotnet restore
 
