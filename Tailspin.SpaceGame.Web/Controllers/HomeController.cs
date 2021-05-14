@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TailSpin.SpaceGame.Web.Models;
@@ -33,32 +35,33 @@ namespace TailSpin.SpaceGame.Web.Controllers
             )
         {
             // Create the view model with initial values we already know.
-            var vm = new LeaderboardViewModel
-            {
-                Page = page,
-                PageSize = pageSize,
-                SelectedMode = mode,
-                SelectedRegion = region,
-
-                GameModes = new List<string>()
-                {
-                    "Solo",
-                    "Duo",
-                    "Trio"
-                },
-
-                    GameRegions = new List<string>()
-                {
-                    "Milky Way",
-                    "Andromeda",
-                    "Pinwheel",
-                    "NGC 1300",
-                    "Messier 82",
-                }
-            };
+            var vm = new LeaderboardViewModel();
 
             try
             {
+                var host = @"";
+                var gameModes = new List<string>();
+                var gameRegions = new List<string>();
+
+                var client = new HttpClient();
+
+                var gameModesResponse = client.GetStreamAsync(@"https://localhost:49161/api/game/gamemodes");
+                var gameRegionsResponse = client.GetStreamAsync(@"https://localhost:49161/api/game/gameregions");
+
+                gameModes = await JsonSerializer.DeserializeAsync<List<string>>(await gameModesResponse);
+                gameRegions = await JsonSerializer.DeserializeAsync<List<string>>(await gameRegionsResponse);
+
+                vm = new LeaderboardViewModel
+                {
+                    Page = page,
+                    PageSize = pageSize,
+                    SelectedMode = mode,
+                    SelectedRegion = region,
+
+                    GameModes = gameModes,
+                    GameRegions = gameRegions
+                };
+
                 // Form the query predicate.
                 // This expression selects all scores that match the provided game 
                 // mode and region (map).
