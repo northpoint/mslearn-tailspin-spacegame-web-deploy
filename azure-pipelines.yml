@@ -76,6 +76,7 @@ steps:
 #     dockerfile: Tailspin.SpaceGame.Web/Dockerfile
 
 - task: DockerCompose@0
+  displayName: Login to ACR 
   inputs:
     containerregistrytype: 'Azure Container Registry'
     azureSubscription: 'Visual Studio Professional Subscription(55fde985-3b7c-46f6-85c1-28ad12ca0a8b)'
@@ -83,3 +84,15 @@ steps:
     dockerComposeFile: '**/docker-compose.yml'
     action: 'Run a Docker Compose command'
     dockerComposeCommand: rm
+
+- task: DockerCompose@0
+  displayName: Push image to container registry 
+  inputs:
+    containerregistrytype: 'Azure Container Registry'
+    azureSubscription: 'Visual Studio Professional Subscription(55fde985-3b7c-46f6-85c1-28ad12ca0a8b)'
+    azureContainerRegistry: '{"loginServer":"pslabs.azurecr.io", "id" : "/subscriptions/55fde985-3b7c-46f6-85c1-28ad12ca0a8b/resourceGroups/akslabsample/providers/Microsoft.ContainerRegistry/registries/pslabs"}'
+    dockerComposeFile: '**/docker-compose.yml'
+    action: 'Run a Docker Compose command'
+    dockerComposeCommand: rm
+    includeSourceTags: true
+    includeLatestTag: true
