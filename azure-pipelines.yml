@@ -80,8 +80,8 @@ steps:
   inputs:
     action: Build services
     containerregistrytype: 'Azure Container Registry'
-    azureSubscription: 'Visual Studio Professional Subscription(55fde985-3b7c-46f6-85c1-28ad12ca0a8b)'
-    azureContainerRegistry: '{"loginServer":"pslabs.azurecr.io", "id" : "/subscriptions/55fde985-3b7c-46f6-85c1-28ad12ca0a8b/resourceGroups/akslabsample/providers/Microsoft.ContainerRegistry/registries/pslabs"}'
+    azureSubscription: 'Azure Subscription'
+    azureContainerRegistry: '{"loginServer":"beekeepertest.azurecr.io", "id" : "/subscriptions/a93ec613-3dfb-40c9-969d-a088bd211881/resourceGroups/USEPOMSOMSRSG2G/providers/Microsoft.ContainerRegistry/registries/beekeepertest"}'
     dockerComposeFile: '**/docker-compose.yml'
     dockerComposeCommand: rm
     projectName: $(Build.Repository.Name)
@@ -93,8 +93,8 @@ steps:
   inputs:
     action: Push services
     containerregistrytype: 'Azure Container Registry'
-    azureSubscription: 'Visual Studio Professional Subscription(55fde985-3b7c-46f6-85c1-28ad12ca0a8b)'
-    azureContainerRegistry: '{"loginServer":"pslabs.azurecr.io", "id" : "/subscriptions/55fde985-3b7c-46f6-85c1-28ad12ca0a8b/resourceGroups/akslabsample/providers/Microsoft.ContainerRegistry/registries/pslabs"}'
+    azureSubscription: 'Azure Subscription'
+    azureContainerRegistry: '{"loginServer":"beekeepertest.azurecr.io", "id" : "/subscriptions/a93ec613-3dfb-40c9-969d-a088bd211881/resourceGroups/USEPOMSOMSRSG2G/providers/Microsoft.ContainerRegistry/registries/beekeepertest"}'
     dockerComposeFile: '**/docker-compose.yml'
     projectName: $(Build.Repository.Name)
     qualifyImageNames: true
