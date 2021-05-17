@@ -66,12 +66,19 @@ steps:
   displayName: 'Publish Artifact: drop'
   condition: succeeded()
 
-- task: Docker@2
-  displayName: Build and push image
+# - task: Docker@2
+#   displayName: Build and push image
+#   inputs:
+#     command: buildAndPush
+#     containerRegistry: $(dockerRegistryServiceConnectionName) #replace with name of your Docker registry service connection
+#     repository: $(imageName)
+#     tags: dev
+#     dockerfile: Tailspin.SpaceGame.Web/Dockerfile
+
+- task: DockerCompose@0
   inputs:
-    command: buildAndPush
-    containerRegistry: $(dockerRegistryServiceConnectionName) #replace with name of your Docker registry service connection
-    repository: $(imageName)
-    tags: dev
-    context: .
-    dockerfile: Tailspin.SpaceGame.Web/Dockerfile
+    containerregistrytype: 'Azure Container Registry'
+    azureSubscription: 'Visual Studio Professional Subscription(55fde985-3b7c-46f6-85c1-28ad12ca0a8b)'
+    azureContainerRegistry: '{"loginServer":"pslabs.azurecr.io", "id" : "/subscriptions/55fde985-3b7c-46f6-85c1-28ad12ca0a8b/resourceGroups/akslabsample/providers/Microsoft.ContainerRegistry/registries/pslabs"}'
+    dockerComposeFile: 'Tailspin.SpaceGame.Web/Dockerfile'
+    action: 'Run a Docker Compose command'
