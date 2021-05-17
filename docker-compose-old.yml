@@ -1,0 +1,8 @@
+version: '2'
+
+services:
+  tailspin-spacegame.web:
+    image: tailspin-spacegame.web
+    build:
+      context: ./Tailspin.SpaceGame.Web
+      dockerfile: Dockerfile
