@@ -13,7 +13,7 @@ namespace Tailsping.SpaceGame.Test
         [Test]
         public void ShouldGameFunctionWithoutPlayers()
         {
-            Assert.Pass();
+            Assert.Pass("Should the game function without players in in");
         }
 
         [Test]
@@ -23,13 +23,13 @@ namespace Tailsping.SpaceGame.Test
 
             var rndVal = rnd.Next(1, 100);
 
-            Assert.IsTrue(rndVal > 50);
+            Assert.IsTrue(rndVal > 50, "Flip a coin if a cheating player should win");
         }
 
         [Test]
         public void CanSupport10Players()
         {
-            Assert.Pass();
+            Assert.Pass("Should the game support 10 players at the same time");
         }
     }
 }
