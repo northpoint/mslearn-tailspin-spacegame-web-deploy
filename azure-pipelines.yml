@@ -76,23 +76,29 @@ steps:
 #     dockerfile: Tailspin.SpaceGame.Web/Dockerfile
 
 - task: DockerCompose@0
-  displayName: Login to ACR 
+  displayName: Build services 
   inputs:
+    action: Build services
     containerregistrytype: 'Azure Container Registry'
     azureSubscription: 'Visual Studio Professional Subscription(55fde985-3b7c-46f6-85c1-28ad12ca0a8b)'
     azureContainerRegistry: '{"loginServer":"pslabs.azurecr.io", "id" : "/subscriptions/55fde985-3b7c-46f6-85c1-28ad12ca0a8b/resourceGroups/akslabsample/providers/Microsoft.ContainerRegistry/registries/pslabs"}'
     dockerComposeFile: '**/docker-compose.yml'
-    action: 'Run a Docker Compose command'
     dockerComposeCommand: rm
+    projectName: $(Build.Repository.Name)
+    additionalImageTags: $(Build.BuildId)
+    qualifyImageNames: true
 
 - task: DockerCompose@0
   displayName: Push image to container registry 
   inputs:
+    action: Push services
     containerregistrytype: 'Azure Container Registry'
     azureSubscription: 'Visual Studio Professional Subscription(55fde985-3b7c-46f6-85c1-28ad12ca0a8b)'
     azureContainerRegistry: '{"loginServer":"pslabs.azurecr.io", "id" : "/subscriptions/55fde985-3b7c-46f6-85c1-28ad12ca0a8b/resourceGroups/akslabsample/providers/Microsoft.ContainerRegistry/registries/pslabs"}'
     dockerComposeFile: '**/docker-compose.yml'
-    action: 'Run a Docker Compose command'
+    projectName: $(Build.Repository.Name)
+    qualifyImageNames: true
     dockerComposeCommand: rm
+    additionalImageTags: $(Build.BuildId)
     includeSourceTags: true
     includeLatestTag: true
