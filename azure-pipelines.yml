@@ -102,3 +102,13 @@ steps:
     additionalImageTags: $(Build.BuildId)
     includeSourceTags: true
     includeLatestTag: true
+
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Azure Subscription'
+    appType: 'webAppContainer'
+    WebAppName: 'tailspingame-az-dev'
+    DockerNamespace: 'beekeepertest.azurecr.io'
+    DockerRepository: 'tailspinspacegameweb'
+    DockerImageTag: 'latest'
