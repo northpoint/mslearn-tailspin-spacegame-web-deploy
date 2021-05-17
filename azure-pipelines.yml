@@ -15,7 +15,8 @@ variables:
   buildConfiguration: 'Release'
   wwwrootDir: 'Tailspin.SpaceGame.Web/wwwroot'
   dotnetSdkVersion: '3.1.300'
-  dockerRegistryServiceConnectionName : 'docker login -u beeadmin -p FS03Dbp7ZhUQLDsk+gM2IvWPbtlxymBV beekeepertest.azurecr.io'
+  #docker login -u beeadmin -p FS03Dbp7ZhUQLDsk+gM2IvWPbtlxymBV 
+  dockerRegistryServiceConnectionName : 'beekeepertest.azurecr.io'
   imageName : 'beekeeper-test'
 
 steps:
