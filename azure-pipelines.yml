@@ -111,6 +111,7 @@ steps:
     includeSourceTags: true
     includeLatestTag: true
 
+# pawel was here 
 # - task: AzureRmWebAppDeployment@4
 #   inputs:
 #     ConnectionType: 'AzureRM'
@@ -120,3 +121,4 @@ steps:
 #     DockerNamespace: 'beekeepertest.azurecr.io'
 #     DockerRepository: 'tailspinspacegameweb'
 #     DockerImageTag: 'latest'
+
