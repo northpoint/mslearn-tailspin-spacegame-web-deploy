@@ -23,7 +23,7 @@ namespace Tailsping.SpaceGame.Test
 
             var rndVal = rnd.Next(1, 100);
 
-            Assert.IsTrue(rndVal > 30, "Flip a coin if a cheating player should win");
+            Assert.IsTrue(rndVal > 25, "Flip a coin if a cheating player should win");
         }
 
         [Test]
